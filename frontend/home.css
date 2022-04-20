@@ -1,0 +1,51 @@
+table {
+    table-layout: fixed ;
+    border: 2px solid #dddddd;
+    
+    font-size: 16px;
+    border: 1px solid rgba(0,0,40,0.15);
+    border-radius: 3px;
+    border-width: 2px;
+
+    border-collapse: collapse;
+    width: 100%;
+    table-layout:fixed; 
+    
+}
+
+thead {
+    background-color: #f4f5f4;
+}
+
+tbody{
+    background-color: white;
+}
+
+td, th {
+    
+    padding: 7px 10px 7px 10px;
+    border: 1px solid #dddddd;
+    text-align: center;
+}
+
+th {
+    cursor: pointer;
+}
+
+button {
+    padding: 7px 10px 7px 10px;
+    height: 50% ; 
+    font-size: 14px;
+    border: 1px rgba(0,0,40,0.15);
+    border-radius: 2px;
+    border-width: 1px 1px 1px 1px;
+    margin: 5px; 
+    background-color: #30a97d;
+    color: white; 
+}
+
+button:hover {
+    background-color: #55c69d;
+    cursor: pointer;
+}
+

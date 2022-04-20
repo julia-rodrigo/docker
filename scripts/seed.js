@@ -1,5 +1,6 @@
 const db = require('../db')
 
+// creates the dummy users
 ;(async () => {
   try {
     await db('users').insert({ name: 'John Doe' })

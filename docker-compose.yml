@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  server:
+    build: .
+    ports: 
+      - '5000:5000'
+
+  db: 
+    image: 'postgres'
+    ports: 
+      -   '4321:5432'
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=docker # set the user name in database to this
+    
+    volumes:
+     - /Users/j.rodrigo/docker/docker-tutorial/using_gitcode/classsed-docker-tutorial/saved_data:/var/lib/postgresql/data
+volumes:
+  saved_data:
+

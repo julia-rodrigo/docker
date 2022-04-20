@@ -1,0 +1,98 @@
+
+// https://www.youtube.com/watch?v=Dm0CmZz-QyI
+
+docker run --name postgres-docker -e POSTGRES_PASSWORD=123456 -d -p 4321:5432 postgres
+psql -d postgres -h localhost -p 4321 -U postgres // downlad postgresql OR GO TO NEXT LINES => check the database config. d: database, U: username
+
+\l
+
+docker exec -it postgres-docker psql -U postgres
+\l
+
+npm i
+
+npm run migrate
+
+docker exec -it postgres-docker psql -U postgres
+\d
+
+
+docker ps
+
+// remove container and images before docker-compose
+docker stop c9ad886247ac 25c96179ddf9 -t 0
+docker rm c9ad886247ac 25c96179ddf9
+docker rmi node-server 665058950d87
+
+
+docker-compose up -d
+{
+    Creating classsed-docker-tutorial_server_1 ... done
+    Creating classsed-docker-tutorial_db_1     ... done
+}
+
+docker exec classsed-docker-tutorial_db_1 npm run migrate
+
+
+
+
+// rebuild eveeyrhting DONT FORGET TO RUN THE "BUILD" in docker-compose up --build -d
+docker-compose down // remove and stop  all the containers used
+docker ps -a
+docker images
+
+docker-compose up --build -d // build checks if anything in the code changed, recreate the image
+{
+    Creating classsed-docker-tutorial_server_1 ... done
+    Creating classsed-docker-tutorial_db_1     ... done
+}
+docker exec classsed-docker-tutorial_server_1  npm run migrate
+
+
+// different terminal
+psql -d docker -h localhost -p 4321 -U docker // dont forget to specify localhost U NEED THE PORT IN DOCKER-COMPOSE FILE
+
+\dt
+select * from users;
+
+// in a difffernt terminal after "Created users table"
+docker exec classsed-docker-tutorial_server_1  npm run seed // add the two dummy users
+
+select * from users;
+
+curl localhost:5000/users
+
+// add users though POST to loocalhost
+curl -X POST -d 'name=Julia hi its me' localhost:5000/users
+{
+    [{"id":3,"name":"Julia hi its me"}]
+}
+
+
+select * from users;
+
+---------------------------
+
+
+ADDING INTO VOLUME:
+
+docker-compose down
+docker-compose up --build -d
+docker exec classsed-docker-tutorial_server_1 npm run migrate
+docker exec classsed-docker-tutorial_server_1  npm run seed
+
+curl localhost:5000/users 
+curl -X POST -d 'name=Julia hi its me' localhost:5000/users
+curl localhost:5000/users 
+
+
+docker-compose down
+docker-compose up --build -d
+curl localhost:5000/users 
+
+
+docker-compose up -d
+
+
+/// -------SORTiNG/order by
+http://knexjs.org/

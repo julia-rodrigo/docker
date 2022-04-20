@@ -1,5 +1,6 @@
 const db = require('../db')
 
+// create a user table
 ;(async () => {
   try {
     await db.schema.dropTableIfExists('users')
